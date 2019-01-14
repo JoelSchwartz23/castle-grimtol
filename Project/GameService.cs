@@ -133,7 +133,40 @@ namespace CastleGrimtol.Project
     }
     public void GetUserInput()
     {
+      while (true)
+      {
+        string userInput = Console.ReadLine().ToLower();
+        gameInputs input = Parse(userInput);
 
+        if (input == gameInputs.goNorth)
+        {
+          Go("north");
+        }
+        else if (input == gameInputs.goEast)
+        {
+          Go("east");
+        }
+        else if (input == gameInputs.goSouth)
+        {
+          Go("south");
+        }
+        else if (input == gameInputs.goWest)
+        {
+          Go("west");
+        }
+        else if (input == gameInputs.useKey)
+        {
+          Go("");
+        }
+        else if (input == gameInputs.goSouth)
+        {
+          Go("south");
+        }
+        else if (input == gameInputs.goSouth)
+        {
+          Go("south");
+        }
+      }
     }
     public void Help()
     {
@@ -191,13 +224,13 @@ namespace CastleGrimtol.Project
 
     public void StartGame()
     {
-      throw new System.NotImplementedException();
+      Setup();
+      Playing = true;
     }
 
     public void TakeItem(string itemName)
     {
-      // var founditem = CurrentRoom.Items.Find(Item => Item.Name.ToLower() == itemName);
-      // if CurrentRoom
+
     }
 
     public void UseItem(string itemName)
@@ -207,10 +240,17 @@ namespace CastleGrimtol.Project
 
     public void Go(string direction)
     {
-      // if (!CurrentRoom.Exits.ContainsKey(direction))
-      // {
-      //   System.Console.Writeline("You cannot go that way."){
-      //     return;
+      if (!CurrentRoom.Exits.ContainsKey(direction))
+      {
+        System.Console.WriteLine("You cannot go that way");
+        return;
+      };
+      if (CurrentRoom.Exits[direction].Locked == true)
+      {
+        System.Console.WriteLine("its locked");
+        return;
+      }
+      CurrentRoom = CurrentRoom.Exits[direction];
     }
   }
 }
