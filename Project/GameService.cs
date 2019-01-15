@@ -19,9 +19,9 @@ namespace CastleGrimtol.Project
       Room start = new Room("Start", "You wake up in a strange dark room, a little dazed..... You see a very feint light to the east and it appears you have nowhere else to go but towards it.", false);
       Room keyroom = new Room("KeyRoom", "You find yourself in another very dark room but now the light to the east has grown much brighter. You kicked something on the floor when you walked in, but it is too dark and you cannot find the item.", false);
       Room keyroom2 = new Room("KeyRoom2", "Now that you have a source of light you are able to see the item that you kicked when you initially came into the room and it's a key!", false);
-      Room crossroads = new Room("CrossRoads", "You have found your way to the lit room and now it seems you must choose a path. To the south there's a door, to the north there's another room that is seemingly brighter than the one you are currently in and to the east it seems that theres another dark room.", false);
+      Room crossroads = new Room("CrossRoads", "You have found your way to the lit room and now it seems you must choose a path. To the south there's a door that appears to be locked, to the north there's another room that is seemingly brighter than the one you are currently in and to the east there's a very dark room.", false);
       Room axeroom = new Room("AxeRoom", "You open the locked door and once you enter the room you feel the floor move beneath your feet, suddenly an Axe comes down from the ceiling and you fail to avoid it. You have fallen.", true);
-      Room darkroom = new Room("DarkRoom", "You have entered another dark room and there's not currently enough light to be able to tell if there's anything useful to you.", false);
+      Room darkroom = new Room("DarkRoom", "You have entered another dark room and there's not currently enough light to be able to tell if there's anything useful to you here.", false);
       Room darkroom2 = new Room("DarkRoom2", "You now have a source of light and you notice that there's a door in the room. You check the door and it appears to be locked. Do you have the key?", false);
       Room roperoom = new Room("RopeRoom", "You open the door and when you walk in there's a rope in the corner of the room. The rope might be useful for later.", true);
       Room torchroom = new Room("TorchRoom", "You enter a room that is significantly lighter than the previous room and it appears that there's a torch on the wall that you can take.", false);
@@ -30,8 +30,8 @@ namespace CastleGrimtol.Project
       Room bananaroom = new Room("BananaRoom", "You step into the room after opening the brightly colored door and you see a ton of bananas, you're hungry, but getting out of the dungeon takes precedence.", false);
       Room maceroom = new Room("MaceRoom", "The door swings open and instantly a mace flies down from the ceiling striking you in the head. You have fallen.", true);
       Room bananadoor2 = new Room("BananaDoor2", "You enter a room and see another door with a crescent shape in it.", true);
-      Room coloreddoors = new Room("ColoredDoors", "You enter a room and see two doors, one red and one black, both with a crescent shape on them. It appears you need to place an item in the doors to continue.", true);
-      Room reddoor = new Room("RedDoor", "You chose to go through the red doorand you have gained your freedom from the dungeon. Congatulations, You Won!", false);
+      Room coloreddoors = new Room("ColoredDoors", "You enter a room and see two doors, one red and one black. There's a pedastal in the middle of the room with a crescent shape engraved int it. It appears you need to place an item in it to continue.", true);
+      Room reddoor = new Room("RedDoor", "You chose to go through the red door and you have gained your freedom from the dungeon. Congatulations, You Won!", false);
       Room blackdoor = new Room("BlackDoor", "You chose to go through the black door and the moment you stepped in spikes came up through the floor. You have fallen.", false);
 
       start.Exits.Add("east", keyroom);
@@ -66,7 +66,7 @@ namespace CastleGrimtol.Project
       roperoom.Items.Add(rope);
 
       CurrentRoom = start;
-      System.Console.WriteLine("What is your name?");
+      System.Console.WriteLine("Choose your character's name.");
       CurrentPlayer = new Player(Console.ReadLine());
 
 
@@ -262,10 +262,11 @@ namespace CastleGrimtol.Project
 
     public void Inventory()
     {
-      System.Console.WriteLine("you have these items in your inventory: ");
+      System.Console.WriteLine("\nInventory:");
       foreach (Item Item in CurrentPlayer.Inventory)
       {
         System.Console.WriteLine(Item.Name);
+        System.Console.Write("\nHow Will you proceed " + CurrentPlayer.PlayerName + "? ");
       }
     }
 
@@ -273,7 +274,7 @@ namespace CastleGrimtol.Project
     {
       // Console.Clear();
       System.Console.WriteLine(CurrentRoom.Description);
-      System.Console.Write("\nHow Will you proceed " + CurrentPlayer.PlayerName + "?");
+      System.Console.Write("\nHow Will you proceed " + CurrentPlayer.PlayerName + "? ");
 
     }
 
@@ -298,14 +299,23 @@ namespace CastleGrimtol.Project
       {
         if (CurrentRoom.Name == "AxeRoom")
         {
+          Console.WriteLine("\nYou have fallen.");
           return;
         }
         if (CurrentRoom.Name == "BlackDoor")
         {
+          Console.WriteLine("\nYou have fallen.");
           return;
         }
         if (CurrentRoom.Name == "MaceRoom")
         {
+          Console.WriteLine("\nYou have fallen.");
+          return;
+        }
+        if (CurrentRoom.Name == "RedDoor")
+        {
+          Console.WriteLine("\n You have beat the game!");
+          Console.WriteLine("\n Thanks for playing!");
           return;
         }
         GetUserInput();
@@ -319,8 +329,9 @@ namespace CastleGrimtol.Project
       {
         CurrentRoom.Items.Remove(gameItem);
         CurrentPlayer.Inventory.Add(gameItem);
-        Console.WriteLine("Item added to inventory");
+        Console.WriteLine("\nItem added to inventory");
         Inventory();
+
 
       }
       else
@@ -337,34 +348,42 @@ namespace CastleGrimtol.Project
       {
         Item key = new Item("key", "Probably helpful for opening locked doors.");
         CurrentRoom.Items.Add(key);
-        CurrentRoom.Description = "Now that you have a source of light you are able to see the item that you kicked when you initially came into the room and it's a key!";
+        CurrentRoom.Description = "\nNow that you have a source of light you are able to see the item that you kicked when you initially came into the room and it's a key!";
         Look();
       }
       if (CurrentRoom.Name == "DarkRoom" && gameItem.Name == "torch")
       {
-        CurrentRoom.Description = "You now have a source of light and you notice that there's a door in the room. You check the door and it appears to be locked. Do you have the key?";
+        CurrentRoom.Description = "\nYou now have a source of light and you notice that there's a door in the room. You check the door and it appears to be locked. Do you have the key?";
         Look();
       }
       if (CurrentRoom.Name == "CrossRoads" && gameItem.Name == "key")
       {
         CurrentRoom.Exits["south"].Locked = false;
-        Console.WriteLine("You have unlocked the southern exit.");
+        CurrentPlayer.Inventory.Remove(gameItem);
+        Console.WriteLine("\nYou have unlocked the southern exit.");
       }
       if (CurrentRoom.Name == "DarkRoom" && gameItem.Name == "key")
       {
         CurrentRoom.Exits["east"].Locked = false;
-        Console.WriteLine("You have unlocked the eastern exit.");
+        Console.WriteLine("\nYou have unlocked the eastern exit.");
       }
       if (CurrentRoom.Name == "ClosingRoom" && gameItem.Name == "rope")
       {
         CurrentRoom.Exits["east"].Locked = false;
         CurrentRoom.Exits["west"].Locked = false;
-        Console.WriteLine("You successfully lassoed the lever. The walls push back and reveal a door to the east and a door to the west.");
+        CurrentPlayer.Inventory.Remove(gameItem);
+        Console.WriteLine("\nYou successfully lassoed the lever. The walls push back and reveal a door to the east and a door to the west.");
       }
       if (CurrentRoom.Name == "BananaDoor" && gameItem.Name == "banana")
       {
         CurrentRoom.Exits["north"].Locked = false;
-        Console.WriteLine("You put the banana in the crescent shape on the wall and the door retracts. You can now enter the room to the north.");
+        Console.WriteLine("\nYou put the banana in the crescent shape on the wall and the door retracts. You can now enter the room to the north.");
+      }
+      if (CurrentRoom.Name == "ColoredDoors" && gameItem.Name == "banana")
+      {
+        CurrentRoom.Exits["north"].Locked = false;
+        CurrentRoom.Exits["west"].Locked = false;
+        Console.WriteLine("\nYou placed the banana in the pedastal and it receeds into the floor below. You hear a loud noise and it appears both doors are now cracked open... choose carefully....");
       }
     }
 
