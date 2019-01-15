@@ -24,12 +24,12 @@ namespace CastleGrimtol.Project
       Room darkroom = new Room("DarkRoom", "You have entered another dark room and there's not currently enough light to be able to tell if there's anything useful to you here.", false);
       Room darkroom2 = new Room("DarkRoom2", "You now have a source of light and you notice that there's a door in the room. You check the door and it appears to be locked. Do you have the key?", false);
       Room roperoom = new Room("RopeRoom", "You open the door and when you walk in there's a rope in the corner of the room. The rope might be useful for later.", true);
-      Room torchroom = new Room("TorchRoom", "You enter a room that is significantly lighter than the previous room and it appears that there's a torch on the wall that you can take. The only exit to this room is the way you came form or north.", false);
+      Room torchroom = new Room("TorchRoom", "You enter a room that is significantly lighter than the previous room and it appears that there's a torch on the wall that you can take. The only exit to this room is the way you came from or north.", false);
       Room closingroom = new Room("ClosingRoom", "You enter a room that has a lever on the far wall, but the walls start closing in on you the moment you come into the room. Hurry and leave the room, or use the correct item in your inventory to stop the walls.", false);
-      Room bananadoor = new Room("BananaDoor", "You enter a room and you see two different doors, one to the north with a cresent shape in the middle that appears to be locked. The other door is a solid yellow and it looks very welcoming.", true);
+      Room bananadoor = new Room("BananaDoor", "You enter a room and you see two different doors, one to the north with a crescent shape in the middle that appears to be locked. The other door to the east is a solid yellow and it looks very welcoming.", true);
       Room bananaroom = new Room("BananaRoom", "You step into the room after opening the brightly colored door and you see a ton of bananas, you're hungry, but getting out of the dungeon takes precedence.", false);
       Room maceroom = new Room("MaceRoom", "The door swings open and instantly a mace flies down from the ceiling striking you in the head...", true);
-      Room coloreddoors = new Room("ColoredDoors", "You enter a room and see two doors, one red and one black. There's a pedastal in the middle of the room with a crescent shape engraved int it. It appears you need to place an item in it to continue.", true);
+      Room coloreddoors = new Room("ColoredDoors", "You enter a room and see two doors, one red to the north and one black to the west. There's a pedastal in the middle of the room with a crescent shape engraved int it. It appears you need to place an item in it to continue.", true);
       Room reddoor = new Room("RedDoor", "You chose to go through the red door and you have gained your freedom from the dungeon. Congatulations, You Won!", false);
       Room blackdoor = new Room("BlackDoor", "You chose to go through the black door and the moment you stepped in spikes came up through the floor...", false);
 
