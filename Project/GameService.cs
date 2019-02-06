@@ -29,7 +29,7 @@ namespace CastleGrimtol.Project
       Room bananadoor = new Room("BananaDoor", "You enter a room and you see two different doors, one to the north with a crescent shape in the middle that appears to be locked. The other door to the east is a solid yellow and it looks very welcoming.", true);
       Room bananaroom = new Room("BananaRoom", "You step into the room after opening the brightly colored door and you see a ton of bananas, you're hungry, but getting out of the dungeon takes precedence.", false);
       Room maceroom = new Room("MaceRoom", "The door swings open and instantly a mace flies down from the ceiling striking you in the head...", true);
-      Room coloreddoors = new Room("ColoredDoors", "You enter a room and see two doors, one red to the north and one black to the west. There's a pedastal in the middle of the room with a crescent shape engraved int it. It appears you need to place an item in it to continue.", true);
+      Room coloreddoors = new Room("ColoredDoors", "You enter a room and see two doors, one red to the north and one black to the west. There's a pedastal in the middle of the room with a crescent shape engraved in it. It appears you need to place an item in it to continue.", true);
       Room reddoor = new Room("RedDoor", "You chose to go through the red door and you have gained your freedom from the dungeon. Congatulations, You Won!", false);
       Room blackdoor = new Room("BlackDoor", "You chose to go through the black door and the moment you stepped in spikes came up through the floor...", false);
 
@@ -255,7 +255,7 @@ namespace CastleGrimtol.Project
       System.Console.WriteLine("Submit 'help' at anytime to bring these instructions back\n");
       System.Console.WriteLine("Submit 'go' + north, east, south or west to navigate the dungeon. Example: go east \n");
       System.Console.WriteLine("Submit 'inventory' to display the items you have picked up, if any.\n");
-      System.Console.WriteLine("Submit 'use' + the name of items in you inventory to use them. Example: use key\n");
+      System.Console.WriteLine("Submit 'use' + the name of items in your inventory to use them. Example: use key\n");
       System.Console.WriteLine("Submit 'take' + the name of an item in the room to take that item. Example: take key\n");
       System.Console.WriteLine("Submit 'look' to receive a description of the room that you are in again \n");
       System.Console.WriteLine("Submit 'quit' at any time to exit the game. \n");
